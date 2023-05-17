@@ -2,7 +2,7 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { Quasar } from 'quasar'
+import { Quasar, Dialog } from 'quasar'
 
 //load lang
 import langEn from 'quasar/lang/en-US'
@@ -18,7 +18,10 @@ const app = createApp(App)
 app
   .use(createPinia())
   .use(Quasar, {
-    lang: langEn
+    lang: langEn,
+    plugins: {
+      Dialog
+    }
   })
   .use(router)
   .mount('#app')

@@ -12,6 +12,21 @@ const router = createRouter({
           name: 'home',
           path: '',
           component: HomeView
+        },
+        {
+          name: 'searchresult',
+          path: 'search-result',
+          component: () => import('@/views/SearchResult/Index.vue')
+        },
+        {
+          name: 'confirmOrder',
+          path: 'confirm-order',
+          component: () => import('@/views/ConfirmOrder/Index.vue')
+        },
+        {
+          name: 'sendBooking',
+          path: 'send-booking',
+          component: () => import('@/views/SendBooking/Index.vue')
         }
       ]
     }
