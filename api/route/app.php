@@ -15,4 +15,4 @@ Route::get('think', function () {
 });
 
 Route::get('hello/:name', 'index/hello');
-Route::post('search-train', 'index/searchTrain');
+Route::post('search-train', 'index/searchTrain')->allowCrossDomain();
