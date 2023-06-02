@@ -12,11 +12,14 @@ import '@quasar/extras/material-icons/material-icons.css'
 import 'quasar/src/css/index.sass'
 import App from './App.vue'
 import router from './router'
+import piniaPersist from 'pinia-plugin-persist'
 
 const app = createApp(App)
+const pinia = createPinia()
+pinia.use(piniaPersist)
 
 app
-  .use(createPinia())
+  .use(pinia)
   .use(Quasar, {
     lang: langEn,
     plugins: {

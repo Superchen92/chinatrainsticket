@@ -8,7 +8,7 @@
     >
   </p>
   <p class="text-h6 q-mt-lg">Contact Infomation</p>
-  <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+  <q-form @submit.prevent="onSubmit" class="q-gutter-md">
     <div class="row">
       <div class="col-6">
         <q-input
@@ -18,6 +18,7 @@
           lazy-rules
           dense
           :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+          clearable
         />
         <q-input
           filled
@@ -28,6 +29,7 @@
           :rules="[
             (val) => (val && val.length > 0 && val.indexOf('@') > 0) || 'Please type something'
           ]"
+          clearable
         />
         <q-input
           filled
@@ -35,11 +37,14 @@
           label="Tel / Mobile"
           lazy-rules
           dense
+          hide-hint
           :rules="[(val) => (val && val.length > 0) || 'Please type something']"
         />
       </div>
       <div class="col-12 text-center">
-        <q-btn label="Book Now" color="primary" type="submit" />
+        <div>
+          <q-btn label="Book Now" color="primary" type="submit" />
+        </div>
       </div>
     </div>
   </q-form>
@@ -53,5 +58,13 @@ const model = reactive({
   email: '',
   phone: ''
 })
-const onSubmit = () => {}
+const onSubmit = () => {
+  console.log('2')
+}
+
+const onReset = () => {
+  model.email = ''
+  model.name = ''
+  model.phone = ''
+}
 </script>

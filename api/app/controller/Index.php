@@ -5,6 +5,7 @@ use app\BaseController;
 use think\Request;
 use app\model\StationInfo;
 use app\model\Config;
+use app\model\SeatName;
 
 class Index extends BaseController
 {
@@ -19,7 +20,7 @@ class Index extends BaseController
     }
 
     public function searchTrain(Request $request){
-        // $requestParams = $request->param();
+        //$requestParams = $request->param();
         // $client = new \GuzzleHttp\Client();
         // $headers = [
         //     'headers' => [
@@ -37,14 +38,53 @@ class Index extends BaseController
         $responseJson = json_decode($response);
         $db = new StationInfo();
         $db_config = new Config();
+        $db_seatName = new SeatName();
         $exchangeRate = $db_config->getExchangeRate('美金汇率');
+        $returnJson = new \stdClass();
+        $returnJson->status = $responseJson->status;
+        $returnJson->msg = $responseJson->msg;
+        $returnJson->result = new \stdClass();
+        $returnJson->result->list = [];
+        
         foreach($responseJson->result->list as $train){
+            $trianInfo = new \stdClass();
+            $trianInfo->trainno = $train->trainno;
             $nameEng = $db->changeNametoNameEng($train->station);
-            $train->station = $nameEng['name_eng'];
+            $trianInfo->station = $nameEng['name_eng'];
             $nameEng = $db->changeNametoNameEng($train->endstation);
-            $train->endstation = $nameEng['name_eng'];
-            $train->priceed = ceil(floatval($train->priceed) / floatval($exchangeRate));
+            $trianInfo->endstation = $nameEng['name_eng'];
+            $trianInfo->departuretime = $train->departuretime;
+            $trianInfo->arrivaltime = $train->arrivaltime;
+            $trianInfo->costtime = str_replace(['小时', '分'], ['h', 'min'], $train->costtime);
+            $trianInfo->startdate = $train->startdate;
+            $trianInfo->seats = [];
+            
+            foreach($train as $key=>$value){
+                $seatInfo = new \stdClass();
+                if(strpos($key, 'num') !== false && $value != '-'){
+                    $code = str_replace('num', '', $key);
+                    $seatNameEng = $db_seatName->getSeatNameEng($code);
+                    $seatInfo->name = $seatNameEng;
+                    switch($value){
+                        case '有':
+                            $seatInfo->tickets = 'available';
+                            break;
+                        case '无':
+                            $seatInfo->tickets = 'sold out';
+                            break;
+                        default:
+                            $seatInfo->tickets = 'only ' . $value . ' left';
+                    }
+                    
+                    $priceKey = 'price'.$code;
+                    $seatInfo->price = ceil(floatval($train->$priceKey) / floatval($exchangeRate));
+                    array_push($trianInfo->seats, $seatInfo);
+                }
+            }
+
+            array_push($returnJson->result->list, $trianInfo);
+
         }
-        return json_encode($responseJson);
+        return json_encode($returnJson);
     }
 }
