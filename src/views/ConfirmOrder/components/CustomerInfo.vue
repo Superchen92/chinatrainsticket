@@ -95,7 +95,10 @@ const showAddPassager = () => {
       name: data.fullName,
       type: data.type,
       number: data.passportNumber,
-      country: data.country
+      country: data.country,
+      sex: data.sex,
+      passportExDate: data.passportExDate,
+      birth: data.birth
     })
 
     calculateTotalPrice()
