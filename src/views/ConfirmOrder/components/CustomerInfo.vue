@@ -92,13 +92,14 @@ const showAddPassager = () => {
   }).onOk((data) => {
     //添加乘客清单,存储到store
     store.addPassager({
-      name: data.fullName,
+      fullname: data.fullName,
       type: data.type,
-      number: data.passportNumber,
-      country: data.country,
       sex: data.sex,
-      passportExDate: data.passportExDate,
-      birth: data.birth
+      birth: data.birth,
+      country: data.country,
+      idType: 'passport',
+      idNumber: data.passportNumber,
+      idExDate: data.passportExDate
     })
 
     calculateTotalPrice()

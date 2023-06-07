@@ -52,19 +52,45 @@
 
 <script setup>
 import { reactive } from 'vue'
+import { useBookInfoStore } from '@/stores/bookInfo'
 
 const model = reactive({
   name: '',
   email: '',
   phone: ''
 })
+const bookInfoStore = useBookInfoStore()
+console.log(bookInfoStore.getCurrentOrder)
 const onSubmit = () => {
-  console.log('2')
-}
+  const postJson = {
+    contactName: model.name,
+    contactEmail: model.email,
+    contactPhone: model.phone,
+    details: {
+      from: '北京',
+      to: '上海',
+      fromStation: bookInfoStore.getCurrentOrder.from,
+      toStation: bookInfoStore.getCurrentOrder.to,
+      depatureTime: bookInfoStore.getCurrentOrder.departuretime,
+      arrivalTime: bookInfoStore.getCurrentOrder.arrivaltime,
+      costTime: bookInfoStore.getCurrentOrder.costtime,
+      startDate: bookInfoStore.getCurrentOrder.startdate,
+      trainNo: bookInfoStore.getCurrentOrder.trainno,
+      seat: bookInfoStore.getCurrentOrder.seat.name,
+      seatPrice: bookInfoStore.getCurrentOrder.seat.price
+    },
+    customers: bookInfoStore.getCurrentOrder.customers
+  }
 
-const onReset = () => {
-  model.email = ''
-  model.name = ''
-  model.phone = ''
+  fetch('http://localhost:8000/api/add-orders', {
+    method: 'POST',
+    body: JSON.stringify(postJson),
+    headers: {
+      Accept: '*/*',
+      'Content-Type': 'application/json'
+    }
+  }).then((res) => {
+    console.log(res.json())
+  })
 }
 </script>

@@ -47,7 +47,7 @@ class OrdersController extends BaseController{
             $customers = [];
             foreach($requestData['customers'] as $customer){
                 $item = [
-                    'name' => $customer['name'], 
+                    'name' => $customer['fullname'], 
                     'type' => $customer['type'] == 'Adult' ? 1 : 0, 
                     'sex' => $customer['sex'] == 'Male' ? 1 : 0,
                     'country' => $customer['country'], 

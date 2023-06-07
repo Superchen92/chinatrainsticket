@@ -15,5 +15,5 @@ Route::get('think', function () {
 });
 
 Route::get('hello/:name', 'index/hello');
-Route::post('search-train', 'index/searchTrain')->allowCrossDomain();
-Route::post('add-orders', 'OrdersController/addOrders')->allowCrossDomain();
+Route::post('/api/search-train', 'index/searchTrain')->allowCrossDomain();
+Route::post('/api/add-orders', 'OrdersController/addOrders')->allowCrossDomain();

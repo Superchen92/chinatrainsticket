@@ -14,6 +14,9 @@ export const useBookInfoStore = defineStore('BookInfo', {
     },
     getCurrentOrderSeatPrice() {
       return this.orders[this.currentOrderIndex]?.seat.price
+    },
+    getCurrentOrder() {
+      return this.orders[this.currentOrderIndex]
     }
   },
   actions: {
