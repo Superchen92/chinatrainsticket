@@ -97,7 +97,7 @@ const showAddPassager = () => {
       sex: data.sex,
       birth: data.birth,
       country: data.country,
-      idType: 'passport',
+      idType: data.idType,
       idNumber: data.passportNumber,
       idExDate: data.passportExDate
     })

@@ -20,7 +20,7 @@ import { ref } from 'vue'
 const searchStore = useSearchTrainStore()
 const trainlist = ref([])
 
-fetch('http://localhost:8000/api/search-train', {
+fetch('/api/search-train', {
   method: 'post',
   body: JSON.stringify({
     from: searchStore.fromStation,

@@ -34,11 +34,19 @@
             label="Birthday"
             :rules="[(val) => (val && val.length > 0) || 'Please Select Birthday']"
           />
+          <q-select
+            outlined
+            v-model="model.idType"
+            dense
+            :options="IdTypes"
+            label="Select Passport Type"
+          />
           <q-input
             v-model="model.passportNumber"
             outlined
             dense
             label="Passport Number"
+            class="q-mt-md"
             :rules="[(val) => (val && val.length > 0) || 'Please Type Your Number']"
           />
           <q-input
@@ -53,7 +61,7 @@
             outlined
             v-model="model.country"
             dense
-            :options="['usa', 'china', 'eng']"
+            :options="Countrys"
             label="Select Country"
             :rules="[(val) => (val && val.length > 0) || 'Please Select Country']"
           />
@@ -70,11 +78,14 @@
 <script setup>
 import { useDialogPluginComponent } from 'quasar'
 import { reactive } from 'vue'
+import { Countrys, IdTypes } from '@/constant/index'
+
 const model = reactive({
   type: 'Adult',
   fullName: '',
   sex: '',
   birth: '',
+  idType: 'Passport No',
   passportNumber: '',
   passportExDate: '',
   country: ''
@@ -82,7 +93,7 @@ const model = reactive({
 
 defineEmits([...useDialogPluginComponent.emits])
 
-const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } = useDialogPluginComponent()
+const { dialogRef, onDialogHide, onDialogOK } = useDialogPluginComponent()
 
 function onSubmit() {
   onDialogOK(model)
