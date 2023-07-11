@@ -8,6 +8,7 @@
 import SearchTrain from '../components/SearchTrain.vue'
 import { useRouter } from 'vue-router'
 import { useSearchTrainStore } from '@/stores/search.js'
+import { useMeta } from 'quasar'
 
 const router = useRouter()
 const searchStore = useSearchTrainStore()
@@ -19,4 +20,13 @@ const showSearchResults = (data) => {
   })
   router.push('search-result')
 }
+
+useMeta(() => {
+  return {
+    title: 'china train',
+    meta: {
+      keywords: { name: 'keywords', content: 'china train bookings' }
+    }
+  }
+})
 </script>
