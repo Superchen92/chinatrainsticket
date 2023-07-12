@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- 主机： 127.0.0.1
--- 生成日期： 2023-06-06 11:42:42
--- 服务器版本： 10.4.28-MariaDB
--- PHP 版本： 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Jul 12, 2023 at 08:14 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `train`
+-- Database: `train`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `train_seat_name`
+-- Table structure for table `train_seat_name`
 --
 
 CREATE TABLE `train_seat_name` (
@@ -35,7 +35,7 @@ CREATE TABLE `train_seat_name` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- 转存表中的数据 `train_seat_name`
+-- Dumping data for table `train_seat_name`
 --
 
 INSERT INTO `train_seat_name` (`id`, `code`, `name_eng`, `name_cn`) VALUES
@@ -49,21 +49,21 @@ INSERT INTO `train_seat_name` (`id`, `code`, `name_eng`, `name_cn`) VALUES
 (8, 'yz', 'Hard seat', '硬座');
 
 --
--- 转储表的索引
+-- Indexes for dumped tables
 --
 
 --
--- 表的索引 `train_seat_name`
+-- Indexes for table `train_seat_name`
 --
 ALTER TABLE `train_seat_name`
   ADD PRIMARY KEY (`id`);
 
 --
--- 在导出的表使用AUTO_INCREMENT
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- 使用表AUTO_INCREMENT `train_seat_name`
+-- AUTO_INCREMENT for table `train_seat_name`
 --
 ALTER TABLE `train_seat_name`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;

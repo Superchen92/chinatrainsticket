@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- 主机： 127.0.0.1
--- 生成日期： 2023-06-06 11:41:57
--- 服务器版本： 10.4.28-MariaDB
--- PHP 版本： 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Jul 12, 2023 at 08:12 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `train`
+-- Database: `train`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `train_config`
+-- Table structure for table `train_config`
 --
 
 CREATE TABLE `train_config` (
@@ -34,7 +34,7 @@ CREATE TABLE `train_config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- 转存表中的数据 `train_config`
+-- Dumping data for table `train_config`
 --
 
 INSERT INTO `train_config` (`Id`, `name`, `value`) VALUES
@@ -42,21 +42,21 @@ INSERT INTO `train_config` (`Id`, `name`, `value`) VALUES
 (2, '英镑汇率', '8.7108');
 
 --
--- 转储表的索引
+-- Indexes for dumped tables
 --
 
 --
--- 表的索引 `train_config`
+-- Indexes for table `train_config`
 --
 ALTER TABLE `train_config`
   ADD PRIMARY KEY (`Id`);
 
 --
--- 在导出的表使用AUTO_INCREMENT
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- 使用表AUTO_INCREMENT `train_config`
+-- AUTO_INCREMENT for table `train_config`
 --
 ALTER TABLE `train_config`
   MODIFY `Id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
